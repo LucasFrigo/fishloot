@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8apmd3mfbxh2"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_2oeb7"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_1rka7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sp6g8"]
+points = PackedVector3Array(1.01587, 0.015873, 1.01587, -1.01587, -0.015873, -1.01587, -1.01587, 0.015873, -1.01587, 1.01587, -0.015873, -1.01587, -1.01587, -0.015873, 1.01587, -1.01587, 0.015873, 1.01587, 1.01587, 0.015873, -1.01587, 1.01587, -0.015873, 1.01587)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.993405, -0.11466, -2.84994e-09, 0.0824905, 0.714692, 0.694558, -0.0796378, -0.689977, 0.719437, -0.41508, 3.34308, 1.74746)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_2oeb7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("PlaneMesh_1rka7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_sp6g8")
