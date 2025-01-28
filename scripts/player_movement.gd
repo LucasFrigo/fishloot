@@ -1,15 +1,29 @@
-extends Node3D
+extends CharacterBody3D
 
 @onready var player_nav_agent := $NavigationAgent3D
+@export var player_move_speed: float = 5.0 
+@export var player_gravity: float = 2500.0
 
 func _ready() -> void:
-    pass 
+    pass
+     
 
 
 func _process(delta: float) -> void:
     pass
 
-func _input(event):
+func _physics_process(delta: float) -> void:
+    # velocity.y += player_gravity * delta
+    if player_nav_agent.is_navigation_finished():
+        return
+
+    var next_path_pos = player_nav_agent.get_next_path_position()
+    var direction = global_position.direction_to(next_path_pos)
+
+    velocity = direction * player_move_speed
+    move_and_slide()
+
+func _input(event: InputEvent) -> void:
     if Input.is_action_just_pressed("left_mouse"):
         var player_cam := $Camera3D 
         var mouse_pos = get_viewport().get_mouse_position()
