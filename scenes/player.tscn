@@ -2,29 +2,32 @@
 
 [ext_resource type="Script" path="res://scripts/player_movement.gd" id="1_oh3y8"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7w0yj"]
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n8gxh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7w0yj"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_etjg0"]
 
 [node name="player" type="CharacterBody3D"]
 script = ExtResource("1_oh3y8")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 3.70299, 3)
-current = true
-
-[node name="player_body" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_7w0yj")
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_n8gxh")
 
-[node name="player_arm" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.205936, 0, 0, 0, 0.213654, 0.51962, 0.245303, -0.39031)
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="MeshRoot" type="Node3D" parent="."]
+
+[node name="player_body" type="MeshInstance3D" parent="MeshRoot"]
+mesh = SubResource("CapsuleMesh_7w0yj")
+skeleton = NodePath("../..")
+
+[node name="player_arm" type="MeshInstance3D" parent="MeshRoot"]
+transform = Transform3D(-4.37114e-08, 0, 0.213654, 0, 0.205936, 0, -1, 0, -9.33911e-09, 0.51962, 0.245303, -0.327794)
 mesh = SubResource("BoxMesh_etjg0")
 skeleton = NodePath("")
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-debug_enabled = true
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.5, 0.5, 0, 0.707107, 0.707107, -0.707107, -0.5, 0.5, 10, 15, 10)
+current = true

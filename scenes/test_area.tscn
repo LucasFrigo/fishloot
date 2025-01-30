@@ -16,11 +16,10 @@ cell_height = 0.01
 [node name="Node3D" type="Node"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.993405, -0.11466, -2.84994e-09, 0.0824905, 0.714692, 0.694558, -0.0796378, -0.689977, 0.719437, -0.41508, 3.34308, 1.74746)
+transform = Transform3D(0.993405, -0.11466, -4.35579e-08, 0.0824905, 0.714692, 0.694558, -0.0796378, -0.689977, 0.719437, -24.9414, 41.5355, 27.9399)
 
 [node name="player" parent="." instance=ExtResource("1_ie1hs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.951963, 0)
-player_move_speed = 6.0
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_mon1o")
